@@ -5,16 +5,27 @@
 ```sql
 SELECT
 	COUNT(*) as n_workers,
-	SUM(monthly_income) as departments_earnings,
-	department
+	department,
+	SUM(monthly_income) as departments_earnings
 FROM emp_attrition
 GROUP BY department
 ORDER BY departments_earnings DESC
 ```
 
+**Result:**
+
+|n_workers	| departments_earnings	| department|
+|----------------|:---------------------:|:----------:|
+|961		|6036284| Research & Development|
+|446		| 3103791| Sales|
+|63		| 419234| Human Resources|
+
+___
+
 :school:	
 **2. Display how many employees are college educated and if their level of education corelates with their position at the company:**
 
+**a) Number of college educated employees**
 ```sql
 SELECT
 	COUNT(CASE WHEN sd.education_description = 'College' THEN 1
@@ -22,7 +33,18 @@ SELECT
 	COUNT(*) AS total_workers
 FROM emp_history eh
 LEFT JOIN survey_details sd
-	ON eh.education = sd.id;
+	ON eh.education = sd.id
+```
+
+**Result**:
+|college_educated|total_workers|
+|:---------------:|:----------:|
+|1300|1470|
+
+___
+	
+**b) The correlation between education history and the level of job position**
+```sql
 SELECT
 	COUNT(ea.emp_id) as workers,
     	ea.job_lvl,
@@ -36,8 +58,39 @@ GROUP BY ea.job_lvl, sd.education_description
 ORDER BY sd.education_description, job_lvl, workers DESC
 ```
 
+**Result:**
+|workers|job_lvl|education_description|
+|-------|-------|---------------------|
+|231|1|Bachelor|
+|171|2|Bachelor|
+|98|3|Bachelor|
+|44|4|Bachelor|
+|28|5|Bachelor|
+|89|1|Below College|
+|47|2|Below College|
+|20|3|Below College|
+|8|4|Below College|
+|6|5|Below College|
+|94|1|College|
+|125|2|College|
+|33|3|College|
+|17|4|College|
+|13|5|College|
+|8|1|Doctor|
+|20|2|Doctor|
+|9|3|Doctor|
+|9|4|Doctor|
+|2|5|Doctor|
+|121|1|Master|
+|171|2|Master|
+|58|3|Master|
+|28|4|Master|
+|20|5|Master|
+
+___
+
 :moneybag:
-**3. What is the lowest salary of a phD educated employee and what is the highest salary of employee without college education?**
+**3. What is the lowest salary of a pHD educated employee and what is the highest salary of employee without college education?**
     
 ```sql
 WITH joined_tables AS (
@@ -54,6 +107,15 @@ SELECT
 FROM joined_tables
 
 ```
+
+**Result**:
+
+|doctor_lowest_income |below_college_highest_income|
+|:-------------------:|:--------------------------:|
+|2127                |19973             |
+
+___
+
 :briefcase:
 **4. How many employees are installed at directorial positions 
     and out of all employees what percentage they make?**
@@ -69,6 +131,12 @@ ROUND((n_dir.n_directors) / (SELECT COUNT(*) from emp_attrition ea) * 100, 1)
 AS percent_of_directors
 FROM n_dir
 ```
+**Result**:
+|n_directors|percent_of_directors|
+|-----------|--------------------|
+|225|15.3|
+
+___
 
 :money_with_wings:	
 **5. A rank of top 10 biggest earners at the company:**
@@ -84,6 +152,20 @@ FROM (
 ) AS subquery
 WHERE income_rank <= 10;
 ```
+|emp_id	|monthly_income|income_rank|
+|-------|--------------|-----------|
+|259	|19999|	1|
+|1035	|19973|	2|
+|1191	|19943|	3|
+|226	|19926|	4|
+|787	|19859|	5|
+|1282	|19847|	6|
+|1038	|19845|	7|
+|1740	|19833|	8|
+|1255	|19740|	9|
+|1338	|19717|	10|
+
+___
 
 :chart_with_upwards_trend:	
 **6. Find the average salary per department and the average salary per department before the company-wide salary hike.**
@@ -105,6 +187,15 @@ GROUP BY department
 ORDER BY dept_avg_income DESC
 ```
 
+**Result**:
+|department|dept_avg_income|dept_previous_income|
+|----------|---------------|--------------------|
+|Sales|6959.2|6046.2|
+|Human Resources|6654.5|5796.6|
+|Research & Development|6281.3|5447.8|
+
+___
+
 :calendar:	
 **7. Years needed for promotion (data includes only the employees who have been promoted at least once):**
 
@@ -115,6 +206,12 @@ AS years_needed_for_promotion
 FROM emp_history
 WHERE Years_Since_Last_Promotion > 0
 ```
+**Result:**
+|years_needed_for_promotion|
+|--------------------------|
+|2.4|
+
+___
 
 :pushpin:	
 **8. Number of people who have never been promoted:**
@@ -125,6 +222,13 @@ SELECT
 FROM emp_history
 WHERE years_at_company = years_since_last_promotion
 ```
+
+**Result**:
+|never_promoted|
+|--------------|
+|179|
+
+___
 
 :ring:
 **9. Is there a correlation between working overtime and employees’ marital status?**
@@ -139,6 +243,14 @@ SELECT
 FROM emp_attrition
 GROUP BY marital_status
 ```
+**Result:**
+|marital_status|all_employees|employees_with_overtime|percentage_with_overtime|
+|:------------:|:-----------:|:--------------------:|:----------------------:|
+|Divorced| 327|99| 30.3|
+|Single| 470| 131| 27.9|
+|Married| 673|186|27.6|
+
+___
 
 :bar_chart:
 **10. Years and attrition. Who was more keen to leave the company: long-time employees or the ones who’ve only just started?**
@@ -166,9 +278,18 @@ GROUP BY sd.seniority_level
 ORDER BY percentage_resigned DESC
 ```
 
+**Result**:
+
+|seniority_level|all_employees|resigned|percentage_resigned|
+|---------------|-------------|--------|------------------|
+|junior|215|75|34.9|
+|mid|561|87|15.5|
+|senior|694|75|10.8|
+
+___
 
 :page_facing_up:
-**11. The results of the survey juxtaposed with reality. How many people who evaluated their job satisfaction as low stayed at company and the opposite – how many employees who described their satisfaction as very high ended up leaving:**
+**11. The results of the survey versus reality. How many people who evaluated their job satisfaction as low stayed at company and the opposite – how many employees who described their satisfaction as very high ended up leaving:**
 
 ```sql 
 WITH joined_tables AS (
@@ -193,3 +314,8 @@ JOIN
    FROM joined_tables
    WHERE attrition = 'no' AND satisfaction_description = 'low') stayed_data
    ```
+
+**Result:**
+|n_left|n_stayed|
+|------|--------|
+|52|223|
