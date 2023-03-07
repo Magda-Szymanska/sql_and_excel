@@ -1,10 +1,10 @@
 # sql_and_excel
 
 <details>
-
-|Project|
-|-----:|---------------|
-| SQL       |
-| Excel     |
+| Rank | Languages |
+|-----:|-----------|
+|     1| Javascript|
+|     2| Python    |
+|     3| SQL       |
 
 </details>
