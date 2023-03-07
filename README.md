@@ -1,8 +1,10 @@
 # sql_and_excel
 
+<details>
 
-| Project | THING-TO-RA|
+|Project|
 |-----:|---------------|
-|     1|     SQL       |
-|     2|     Excel     |
-|     3|               |
+| SQL       |
+| Excel     |
+
+</details>
