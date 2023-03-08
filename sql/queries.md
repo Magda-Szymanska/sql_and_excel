@@ -1,6 +1,6 @@
-:office:	
-**1. Count the number of employees per department and find which department has the biggest
-    monthly income:**
+
+:office:
+**1. Count the number of employees per department and find which department has the biggest monthly income:**
 
 ```sql
 SELECT
@@ -23,7 +23,7 @@ ORDER BY departments_earnings DESC
 ___
 
 :school:	
-**2. Display how many employees are college educated and if their level of education corelates with their position at the company:**
+**2. Display how many employees are college educated and if their level of education correlates with their position at the company:**
 
 **a) Number of college educated employees**
 ```sql
@@ -35,6 +35,9 @@ FROM emp_history eh
 LEFT JOIN survey_details sd
 	ON eh.education = sd.id
 ```
+
+*Explanation:*
+- I decided on using equal sign '=' in ```COUNT(CASE WHEN sd.education_description = 'College' THEN 1``` instead of IN because employees without college diploma were noted as 'below college'. 
 
 **Result**:
 |college_educated|total_workers|
@@ -105,7 +108,6 @@ SELECT
 	MIN(CASE WHEN education_description = 'Doctor' THEN monthly_income END) AS doctor_lowest_income,
 	MAX(CASE WHEN education_description = 'Below College' THEN monthly_income END) AS b_college_highest_income
 FROM joined_tables
-
 ```
 
 **Result**:
@@ -117,8 +119,7 @@ FROM joined_tables
 ___
 
 :briefcase:
-**4. How many employees are installed at directorial positions 
-    and out of all employees what percentage they make?**
+**4. How many employees hold a director level position and out of all employees what percentage they make?**
     
 ```sql
 WITH n_dir AS (
@@ -131,6 +132,8 @@ ROUND((n_dir.n_directors) / (SELECT COUNT(*) from emp_attrition ea) * 100, 1)
 AS percent_of_directors
 FROM n_dir
 ```
+
+
 **Result**:
 |n_directors|percent_of_directors|
 |-----------|--------------------|
@@ -214,19 +217,34 @@ WHERE Years_Since_Last_Promotion > 0
 ___
 
 :pushpin:	
-**8. Number of people who have never been promoted:**
+**8. Find the average distance from home and the number of employees who live further than the average :**
 
+a) The average distance:
 ```sql
 SELECT
-	COUNT(*) AS never_promoted
-FROM emp_history
-WHERE years_at_company = years_since_last_promotion
+	ROUND(AVG(Distance_From_Home),1) AS avg_distance
+FROM satisfaction_survey
 ```
 
-**Result**:
-|never_promoted|
-|--------------|
-|179|
+b) Employees who live further than that:
+```sql
+SELECT
+	COUNT(*) as workers_who_live_far
+FROM satisfaction_survey 
+WHERE distance_from_home > (SELECT AVG(distance_from_home)
+							FROM satisfaction_survey)
+```
+**Results:**
+a)
+|avg_distance|
+|-----------|
+|9.2|
+
+
+b)
+|workers_who_live_far|
+|-------|
+|530|
 
 ___
 
@@ -253,7 +271,7 @@ GROUP BY marital_status
 ___
 
 :bar_chart:
-**10. Years and attrition. Who was more keen to leave the company: long-time employees or the ones who’ve only just started?**
+**10. Years and attrition. Who was more keen to leave the company: long-time employees or the ones who’ve only just started working at the company?**
 
 ```sql
 WITH seniority_data as (
