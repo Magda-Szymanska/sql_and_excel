@@ -199,25 +199,8 @@ ORDER BY dept_avg_income DESC
 
 ___
 
-:calendar:	
-**7. Years needed for promotion (data includes only the employees who have been promoted at least once):**
-
-```sql
-	SELECT 
-		ROUND(AVG(Years_At_Company) / AVG(Years_Since_Last_Promotion), 1) 
-AS years_needed_for_promotion
-FROM emp_history
-WHERE Years_Since_Last_Promotion > 0
-```
-**Result:**
-|years_needed_for_promotion|
-|--------------------------|
-|2.4|
-
-___
-
 :pushpin:	
-**8. Find the average distance from home and the number of employees who live further than the average :**
+**7. Find the average distance from home and the number of employees who live further than the average :**
 
 a) The average distance:
 ```sql
@@ -249,7 +232,7 @@ b)
 ___
 
 :ring:
-**9. Is there a correlation between working overtime and employees’ marital status?**
+**8. Is there a correlation between working overtime and employees’ marital status?**
 
 ```sql
 SELECT
@@ -271,7 +254,7 @@ GROUP BY marital_status
 ___
 
 :bar_chart:
-**10. Years and attrition. Who was more keen to leave the company: long-time employees or the ones who’ve only just started working at the company?**
+**9. Years and attrition. Who was more keen to leave the company: long-time employees or the ones who’ve only just started working at the company?**
 
 ```sql
 WITH seniority_data as (
@@ -307,7 +290,7 @@ ORDER BY percentage_resigned DESC
 ___
 
 :page_facing_up:
-**11. The results of the survey versus reality. How many people who evaluated their job satisfaction as low stayed at company and the opposite – how many employees who described their satisfaction as very high ended up leaving:**
+**10. The results of the survey versus reality. How many people who evaluated their job satisfaction as low stayed at company and the opposite – how many employees who described their satisfaction as very high ended up leaving:**
 
 ```sql 
 WITH joined_tables AS (
