@@ -82,18 +82,8 @@ c) Rank column
 |19665	|549	|10|
 
 ___
-:calendar:	
-**7. Years needed for promotion (data includes only the employees who have been promoted at least once):**
-```excel
-=ROUND(AVERAGEIFS('employment and education'!F2:F, 'employment and education'!I2:I, ">0") / AVERAGEIFS('employment and education'!I2:I, 'employment and education'!I2:I, ">0"), 1)
-```
-
-**Result:**
-|2.4|
-|---|
-___
 :pushpin:	
-**8. Find the average distance from home and the number of employees who live further than the average:**
+**7. Find the average distance from home and the number of employees who live further than the average:**
 
 a) The average distance:
 ```excel
@@ -125,20 +115,20 @@ b)
 ___
 
 :ring:
-**9. Is there a correlation between working overtime and employees’ marital status?**
+**8. Is there a correlation between working overtime and employees’ marital status?**
 
 ![last](https://i.imgur.com/WYJTxmC.png)
 ___
 
 :bar_chart:
-**10. Years and attrition. Who was more keen to leave the company: long-time employees or the ones who’ve only just started working at the company?**
+**9. Years and attrition. Who was more keen to leave the company: long-time employees or the ones who’ve only just started working at the company?**
 
 ![seniority](https://i.imgur.com/JfOppbw.png)
 
 
 ___
 :page_facing_up:
-**11. The results of the survey versus reality. How many people who evaluated their job satisfaction as low stayed at company and the opposite – how many employees who described their satisfaction as very high ended up leaving:**
+**10. The results of the survey versus reality. How many people who evaluated their job satisfaction as low stayed at company and the opposite – how many employees who described their satisfaction as very high ended up leaving:**
 
 ![job_satisfaction](https://i.imgur.com/xlmWFb0.png)
 
