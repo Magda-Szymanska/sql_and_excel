@@ -37,7 +37,7 @@ LEFT JOIN survey_details sd
 ```
 
 *Explanation:*
-- I decided on using equal sign '=' in ```COUNT(CASE WHEN sd.education_description = 'College' THEN 1``` instead of IN because employees without college diploma were noted as 'below college'. 
+- I decided to use equal sign '=' in ```COUNT(CASE WHEN sd.education_description = 'College' THEN 1``` instead of IN because employees without college diploma were noted as 'below college'. 
 
 **Result**:
 |college_educated|total_workers|
