@@ -2,7 +2,8 @@
 # IBM Attrition Data: SQL and Excel Project
 
 By: Magda Szymanska
-szymanskamagda11@gmail.com
+
+:e-mail: szymanskamagda11@gmail.com
 
 ___
 
@@ -33,5 +34,3 @@ Assumes scenario workers who have taken a survey through business e-mail. Code t
 SPLITTING THE DATA
 Assuming I decided to split the data. Employees table with their basic information – generated random names and email address. 
 I have decided to transform the data. 
-Add new information. 
- and survey results and years data (?). 
