@@ -9,11 +9,15 @@ ___
 
 ## Introduction:
 
-The project was created using free data provided on [Kaggle](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset/discussion), which supposedly contains information, gathered by IBM, concerning the link between employees leaving the company and various workplace and life related factors.
+The project was created using free data provided on [Kaggle](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset/discussion), which supposedly contains information, gathered by IBM, concerning the link between employees leaving the company and various workplace and life related factors. I did however transform the data to my liking and I came up with the questions for the project.
 
-I have chosen this data purely because I thought it would allow me to showcase several SQL and Excel related skills. My project is **not** meant to be a serious analysis and nor do I think the questions posed by me are the most important when it comes to attrition. 
+I have chosen this data **purely** because I thought it would allow me to showcase several SQL and Excel related skills. My project is **not** meant to be a serious analysis on attrition and nor do I think the questions posed by me are in any way helpful in understanding the factors leading to employees leaving a company.
 
+SQL project can be found here: [SQL Project](https://github.com/Magda-Szymanska/sql_and_excel/tree/main/sql). Please note SQL Project is composed of [queries.md](https://github.com/Magda-Szymanska/sql_and_excel/edit/main/sql/queries.md) which stores the exercises and [creatingtable.sql](https://github.com/Magda-Szymanska/sql_and_excel/blob/main/sql/creatingtable.sql) which documents the process of transforming the table. 
+
+Excel project can be found here: [Excel Project](https://github.com/Magda-Szymanska/sql_and_excel/tree/main/excel)
 ___
+
 
 ## Transforming data:
 
