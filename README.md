@@ -15,26 +15,19 @@ I have chosen this data **purely** because I thought it would allow me to showca
 
 **SQL project can be found here:** [SQL Project](https://github.com/Magda-Szymanska/sql_and_excel/tree/main/sql). The SQL Project is composed of [queries.md](https://github.com/Magda-Szymanska/sql_and_excel/edit/main/sql/queries.md) which stores the exercises and [creatingtable.sql](https://github.com/Magda-Szymanska/sql_and_excel/blob/main/sql/creatingtable.sql) which documents the process of transforming the table. 
 
-**Excel project can be found here:** [Excel Project](https://github.com/Magda-Szymanska/sql_and_excel/tree/main/excel). **Please note the ibm_emp.xlsx is too big to be displayed and clicking on it will result in automatic download.**
+**Excel project can be found here:** [Excel Project](https://github.com/Magda-Szymanska/sql_and_excel/tree/main/excel). The folder contains [calculations.md](https://github.com/Magda-Szymanska/sql_and_excel/blob/main/excel/calculations.md) with all the exercises, a separate file with only [pivot tables](https://github.com/Magda-Szymanska/sql_and_excel/blob/main/excel/ibm_emp%20-%20pivot%20table%201.csv) included (in csv format) and the spreadsheet itself, [ibm_emp.xlsx](https://github.com/Magda-Szymanska/sql_and_excel/blob/main/excel/ibm_emp.xlsx), in xlsx format. **Please note the ibm_emp.xlsx is too big to be displayed on Github and clicking on the 'view raw' will result in automatic download.**
 ___
 
 
 ## Transforming data:
 
-As I have mentioned the project was meant to be a showcase of skills and therefore I deliberately split the database (which originally had contained one table with 35 columns) into four tables. 
-I have assumed a hypothetical scenario in which part of the data (personal information, education) had been collected by the company. 
+As I have already mentioned the project was meant to be a showcase of skills and therefore I deliberately split the database into four tables.
 
-Hypothetical scenario – employees were handed a sheet.Due to missing information. I manipulated the data (or re-interpreted it for me own purposes). The same reason follows – I passed some of the more useful information to showcase more varied queries (to skip the endless barrage of aggregate counting exercises, instead of spamming average function). 
+In its original state the database contained one table with 35 columns. Part of the data consisted of employees' personal information (such as age, martial status, position), while another showed information about each employee's working environment and satisfaction - both from the point of view of employee (*how happy I am at this place?*) and from the point of view of employer (*what do I think about this employee's performance?*). 
 
-The first step was to clean up and alter the data, as well as make it suitable for Excel. 
-The data was separated in two types: int and text and lacked a primarly key. All tables accepted NULL values.
-Eliminate unnecessary data. DailyRate, HourlyRate and MonthlyRate pointless in presence of MonthlyIncome.  
-Data satisfaction level expressed in numbers without explanation.  For excel purposes. 
-Clean up data – business_travel expressed in text, but education in numbers. 
-CHANGING THE DATA TO BE MORE PRACTICAL
-Reared its ugly head. Survey method. 
-Hypotetical information.
-Assumes scenario workers who have taken a survey through business e-mail. Code that automatically strikes as those who quit. 
-SPLITTING THE DATA
-Assuming I decided to split the data. Employees table with their basic information – generated random names and email address. 
-I have decided to transform the data. 
+After much headache I concocted a hypothetical scenario in which half of the information (personal information, education) has been collected by the company and put it in ```emp_attrition``` and ```emp_history``` tables. Meanwhile, the other half comes from employees themselves who have been told to fill a survey, leading to the creation of ```satisfaction_survey``` table. I deleted the columns which pertained to employer's view to fit my vision of employee-only survey better.
+
+With three tables done I've moved onto creating the last table, ```survey_details```. When it came to columns such as Job_Satisfaction or Work_Life_Balance a large chunk of the original data was expressed using numerical values instead of descriptions. For example, the Job_Satisfaction with 1 typed in was supposed to mean the satisfaction level was 'low'. However, the description 'low' was only available on the Kaggle website itself. I decided to include this information in my database with  ```survey_details``` table and I connected it to the other tables by establishing foreign keys.
+
+Lastly, I exported the database to Excel in csv. form.
+
