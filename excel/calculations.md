@@ -1,4 +1,4 @@
-*PS:The order of queries may differ from the SQL version on a few occasions. It's due to the usage of pivot tables which had already included the desired information.*
+*Disclaimer: The order of queries may differ from the SQL version. It's due to the usage of pivot tables which had already included the desired information.*
 
 ___
 
