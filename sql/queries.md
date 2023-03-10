@@ -1,6 +1,6 @@
 
 :office:
-**1. Count the number of employees per department and find which department has the biggest monthly income:**
+ **1. Count the number of employees per department and find which department has the biggest monthly income:**
 
 ```sql
 SELECT
